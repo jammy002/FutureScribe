@@ -5,17 +5,17 @@ import { sendVerificationEmail } from "../utils/sendEmail.js";
 export const register = async (req, res, next) => {
   try {
     const {
-      firstName,
-      lastName,
+      firstname,
+      lastname,
       email,
       password,
       image,
       accountType,
       provider,
     } = req.body;
-
+    console.log(req.body)
     //validate fileds
-    if (!(firstName || lastName || email || password)) {
+    if (!(firstname || lastname || email || password)) {
       return next("Provide Required Fields!");
     }
 
@@ -29,17 +29,15 @@ export const register = async (req, res, next) => {
     }
 
     const hashedPassword = await hashString(password);
-
     const user = await Users.create({
-      name: firstName + " " + lastName,
+      name: firstname + " " + lastname,
       email,
-      password: !provider ? hashedPassword : "",
+      password: hashedPassword,
       image,
       accountType,
       provider,
     });
 
-    user.password = undefined;
 
     const token = createJWT(user?._id);
 
@@ -99,15 +97,15 @@ export const googleSignUp = async (req, res, next) => {
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
+    console.log(req.body)
     //validation
     if (!email) {
       return next("Please Provide User Credentials");
     }
 
     // find user by email
-    const user = await Users.findOne({ email }).select("+password");
-
+    const user = await Users.findOne({ email });
+    console.log(user)
     if (!user) {
       return next("Invalid email or password");
     }
@@ -123,10 +121,9 @@ export const login = async (req, res, next) => {
         token,
       });
     }
-
     // compare password
-    const isMatch = await compareString(password, user?.password);
-
+    const isMatch = await compareString(password,user.password );
+    console.log(isMatch)
     if (!isMatch) {
       return next("Invalid email or password");
     }

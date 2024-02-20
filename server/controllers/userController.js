@@ -25,7 +25,7 @@ export const OPTVerification = async (req, res, next) => {
 
       if (isMatch) {
         await Promise.all([
-          Users.findOneAndUpdate({ userId: id }, { emailVerified: true }),
+          Users.findOneAndUpdate({ _id: id }, { emailVerified: true }),
           Verification.findOneAndDelete({ userId:id }),
         ]);
 

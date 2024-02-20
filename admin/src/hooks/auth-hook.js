@@ -37,7 +37,7 @@ export const useSignin = (toast, toggle) => {
     return useMutation({
         mutationFn: async (formData) => {
             toggle();
-            const { data } = await axios.post(`${API_URI}/auth/register`, formData);
+            const { data } = await axios.post(`${API_URI}/auth/login`, formData);
             localStorage.setItem("user", JSON.stringify(data));
             return data;
         },
