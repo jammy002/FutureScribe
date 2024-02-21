@@ -55,7 +55,7 @@ const NavbarLink= ({icon: Icon ,label, active, onClick}) => {
  )
 } 
 const Sidebar = ({close=()=>{} }) => {
-  const { colorSheme, setColorScheme } = useMantineColorScheme();
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -85,7 +85,7 @@ const Sidebar = ({close=()=>{} }) => {
       </Stack>
       <ActionIcon
       onClick={()=>
-         setColorScheme( colorSheme === "light" ? "dark" : "light")
+         setColorScheme( colorScheme === "light" ? "dark" : "light")     
     }
     variant="default"
     size="xl"
@@ -93,7 +93,7 @@ const Sidebar = ({close=()=>{} }) => {
     className="w-full rounded-full mt-10"
   >
       {
-      colorSheme === "dark" ? (
+      colorScheme === "dark" ? (
       <IconSun stroke={0.5} />
        ) : (
          <IconMoon stroke={0.5}/>

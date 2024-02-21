@@ -35,7 +35,7 @@ const LoginPage = () => {
     <div className='hidden md:flex flex-col gap-y-4 w-1/3 min-h-screen
     bg-black items-center justify-center'>
       <Logo type='login' />
-      <span className='text-xl font-semibold text-white'>suru krte h bina kisi bakchodi ke</span>
+      <span className='text-xl font-semibold text-white'>Where Futures Unfold Through Words</span>
 
     </div>
     <div className='flex w-full md:w-2/3 h-full bg-white dark:bg-gradient-to-b
@@ -69,7 +69,7 @@ const LoginPage = () => {
                 name='email'
                 value={data?.email}
                 isRequired={true}
-                placeholder="ha mlm baap ko mt bata"
+                placeholder="Email"
                 onChange={handleChange}
               />
               <Inputbox
@@ -77,7 +77,7 @@ const LoginPage = () => {
                 label='Password'
                 name='password'
                 isRequired={true}
-                placeholder="nhi batauga bc"
+                placeholder="password"
                 value={data?.password}
                 onChange={handleChange}
               />

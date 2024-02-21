@@ -29,7 +29,7 @@ export const useAnalytics = (toast, toggle, token) => {
         },
         onSuccess:(data)=> {
             toggle();
-            toast.success(data?.message);
+            toast.success(data?.message);  
         },   
 
     });

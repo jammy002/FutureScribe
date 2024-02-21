@@ -48,7 +48,7 @@ const SignupPage = () => {
         />
       )}
       <Logo type='signin'/>
-      <span className="text-xl font-semibold text-white">chala ja bsdk</span>
+      <span className="text-xl font-semibold text-white">Where Futures Unfold Through Words</span>
       </div>
 
       <div className='flex w-full md:w-2/3 h-full bg-white dark:bg-gradient-to-b
