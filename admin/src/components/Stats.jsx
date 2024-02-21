@@ -35,7 +35,7 @@ const Stats = ({dt}) => {
                 {
                     title: "TOTAL WRITERS",
                     icon: "user",
-                    value: formatNumber(dt?.totalWriters ?? 0),
+                    value: formatNumber(dt?.totalWriters ?? 1),
                     diff: -30,
                 },
             ];
@@ -51,6 +51,24 @@ const Stats = ({dt}) => {
           <Text className='capitalize text-sm'>{stat.title}</Text>
           <Icon size= "1.4rem" stroke={1.5} />
         </Group>
+
+        <Group align='flex-end' gap="xs" mt={25}>
+            <Text className='text-2xl 2xl:text-4xl font-serif'>{stat.value}</Text>
+
+        <Text c={stat.diff > 0 ? "teal" : " red"}
+        fz="sm"
+        fw="500"
+        className='font-medium'
+        >
+            <span>{stat.diff}%</span>
+            <DiffIcon size="1rem" stroke={0.5} />
+        </Text>
+        </Group>
+        <Text
+        fz="xs"
+        c="dimmed"
+        mt={7}
+        >Compare to previous month</Text>
         </Paper>
     )
     
@@ -58,6 +76,7 @@ const Stats = ({dt}) => {
    })  ;     
   return  (
     <SimpleGrid cols={{base: 1, xs: 2, md: 4}}>  {stats} </SimpleGrid>
+    
   )
   
 }
