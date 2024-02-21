@@ -42,7 +42,7 @@ const Stats = ({dt}) => {
 
 
    const stats  = data?.map((stat)=>{
-    const Icon = icon[stat.icon];
+    const Icon =  icons[stat.icon];
     const DiffIcon = stat.diff > 0 ? IconArrowUpRight : IconArrowDownRight;
        
     return(
@@ -54,10 +54,6 @@ const Stats = ({dt}) => {
         </Paper>
     )
     
-    
-
-
-
 
    })  ;     
   return  (
