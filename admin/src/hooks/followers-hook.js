@@ -9,7 +9,7 @@ export const useFollowers =( toast,toggle, token) => {
             toggle();
             const { data } = await axios.post(`${API_URI}/posts/admin-followers?page=${page}`, null, {
                 headers: {
-                    Authorization: "bearer" + token ,
+                    Authorization: "bearer " + token ,
                 }
             });
             return data;

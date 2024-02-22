@@ -12,12 +12,10 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     const userToken = JWT.verify(token, process.env.JWT_SECRET_KEY);
-    console.log(userToken);
 
     req.body.user = {
       userId: userToken.userId,
     };
-    console.log(req.body.user)
 
     next(); 
   } catch (error) {
