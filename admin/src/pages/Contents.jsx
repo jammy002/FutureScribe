@@ -213,7 +213,7 @@ const Contents = () => {
 
                 <div className="w-full mt-5 flex items-center justify-center">
                 <Pagination 
-                total={data?.numOfPage}
+                total={data?.numOfPages}
                 siblings={1}
                 defaultValue={data?.page}
                 withEdges

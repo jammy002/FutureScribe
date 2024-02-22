@@ -64,7 +64,6 @@ export const useCreatePost = (toast, toggle, token) => {
                 window.location.replace("/contents");
 
             },2000);
-
         }
     });
 };
