@@ -48,7 +48,7 @@ const Contents = () => {
     };
 
     const handleComment = (id, size) => {
-        if(size === 0) {
+        if(size > 0) {
              setCommentId(id);
              setOpen(true);
     }
@@ -230,8 +230,8 @@ const Contents = () => {
             close={close}
             handleClick={handleAction}
             /> 
-              <Comments />
-            {/* {commentId && <Comments/>} */}
+            
+            {commentId && <Comments/>}
         </>
     )
 
