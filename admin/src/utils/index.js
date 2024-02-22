@@ -15,7 +15,7 @@ export const uploadFile = (setFileURl, file) => {
         "state_changed",
         (snapshot) => {
             const progress =
-                (snapshot.bytesTransferredyteTransferred / snapshot.totalBytes) * 100;
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log("Upload is " + progress + "% done");
 
             switch (snapshot.state) {
@@ -31,9 +31,9 @@ export const uploadFile = (setFileURl, file) => {
             console.log(error);
          },
         () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURl) => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 console.log("Successfully uploaded");
-                setFileURl(downloadURl);
+                setFileURl(downloadURL);
             });
         }
      );
@@ -47,3 +47,36 @@ export function formatNumber(num) {
     }
     return num.toString();
 }
+
+export function getInitials(fullName){
+    const names = fullName.split(" "); // jamaluddin
+    const initials = names.slice(0, 2).map((name) => name[0].toUpperCase());
+    const initialsStr = initials.join(" ");
+
+    return initialsStr;
+}
+
+export function createSlug(title) {
+    return title
+
+.toLowerCase()
+.replace(/\s+/g, '-')
+.replace(/[^\w-]+/g, '')
+.replace(/--+/g, '-')
+.replace(/^-+/, '')
+.replace(/-+$/, '');
+}
+
+
+export const updateURL = ({ page, navigate, location }) => {
+ const params = new URLSearchParams();
+    
+    if (page && page > 1) { 
+    params.set("page", page);
+ }
+    const newURL = `${location.pathname}?${params.toString()}`; 
+     navigate(newURL, { replace: true });
+    
+    return newURL;
+    
+    };
