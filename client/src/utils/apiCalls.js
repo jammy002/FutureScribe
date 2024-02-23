@@ -1,5 +1,5 @@
 import axios from "axios"
-export const ApI_URL = 'https://localhost:8800';
+export const API_URL = 'https://localhost:8800';
 
 
 export const getGoogleSignUp = async(accessToken) => {
@@ -17,7 +17,7 @@ export const getGoogleSignUp = async(accessToken) => {
                 emailVerified: user.email_verified,
                 image: user.picture,
             };
-            const result = await axios.post(`${ApI_URL}/auth/google-signup`, data);
+            const result = await axios.post(`${API_URL}/auth/google-signup`, data);
             console.log(data);
          }
         
@@ -31,8 +31,13 @@ export const getGoogleSignUp = async(accessToken) => {
 
 export const emailSignUp = async(data) =>{
     try {
+        const result = await axios.post(`${API_URL}/auth/register`, data);
+        return result?.data;
         
-    } catch () {
+    } catch (error) {
+        const err = error?.response?.data || error?.response;
+        console.log(error);
+        return err;
         
     }
 }
