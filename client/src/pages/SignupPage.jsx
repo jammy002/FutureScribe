@@ -2,21 +2,22 @@ import { useGoogleLogin } from "@react-oauth/google";
 import React, { useEffect, useState } from "react";
 import { BiImages } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
-import { IoArrowBackCircleSharp } from "react-icons/io5";  
-import { Link } from "react-router-dom";                  
+import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import { Toaster, toast } from 'sonner';
 import { Button, Divider, Inputbox, Logo } from "../components";
-
+import { getGoogleSignUp, emailSignUp } from "../utils/apiCalls"
+import useStore from "../store";
+import { saveUserInfo, uploadFile } from "../utils";
 
 const SignupPage = () => {
-  const user = {}
+  const { user, signIn, setIsLoading } = useStore()
   const [showForm, setShowForm] = useState(false);
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-
   });
   const [file, setFile] = useState("");
   const [fileURl, setFileURl] = useState("");
@@ -30,25 +31,55 @@ const SignupPage = () => {
     });
   };
 
-  const googleLogin = async () => {};
-  const handleSubmit = async () => {};
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      setIsLoading(true);
 
-  if (user.token) window.location.replace("/");
- 
+      const user = await getGoogleSignUp(tokenResponse.user.access_token);
 
+      setIsLoading(false)
+      if (user.success === true) {
+        saveUserInfo(user, signIn)
+      } else {
+        toast.error(user?.message)
+      }
+    },
+  })
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const result = await emailSignUp({ ...data, image: fileURl});
+    setIsLoading(false);
+    if(result?.success === true) {
+      saveUserInfo(result, signIn);
+    } else {
+      toast.error(result?.message);
+    }
+  };
+
+  if ( user && user.token) 
+    window.location.replace("/");
+
+  useEffect(() => {
+    if (file) {
+      uploadFile(setFileURl, file);
+    }
+  }, [file]);
+  
   return (
     <div className="flex w-full h-[100vh]">
       <div className='hidden md:flex flex-col gap-y-4 w-1/3 h-full
     bg-black items-center justify-center'>
-      {fileURl && (
-        <img 
-        src={fileURl  || file}
-        alt=''
-        className='w-16 h-16 rounded-full'
-        />
-      )}
-      <Logo type='signin'/>
-      <span className="text-xl font-semibold text-white">Where Futures Unfold Through Words</span>
+        {fileURl && (
+          <img
+            src={fileURl || file}
+            alt=''
+            className='w-16 h-16 rounded-full'
+          />
+        )}
+        <Logo type='signin' />
+        <span className="text-xl font-semibold text-white">Where Futures Unfold Through Words</span>
       </div>
 
       <div className='flex w-full md:w-2/3 h-full bg-white dark:bg-gradient-to-b
@@ -99,8 +130,6 @@ const SignupPage = () => {
                       value={data?.lastName}
                       onChange={handleChange}
                     />
-
-
                   </div>
                   <Inputbox
                     label='Email Address'
@@ -110,7 +139,6 @@ const SignupPage = () => {
                     placeholder="your email address"
                     value={data?.email}
                     onChange={handleChange}
-
                   />
                   <Inputbox
                     label='Password'
@@ -120,14 +148,11 @@ const SignupPage = () => {
                     placeholder="password"
                     value={data?.password}
                     onChange={handleChange}
-
                   />
 
                   <div className="flex items-center justify-between py-4">
                     <label htmlFor="imgUpload" className="flex items-center gap-1 text text-base
                      text-black dark:text-gray-500 cursor-pointer">
-
-
                       <input
                         id="imgUpload"
                         type="file"
@@ -152,12 +177,11 @@ const SignupPage = () => {
                   dark:bg-rose-800 hover:bg-rose-700
                     focus:outline-none '
                 />
-
               </form>
             ) : (
               <div className="max-w-md w-full space-y-8">
                 <Button
-                  onClick ={() => googleLogin ()}
+                  onClick={() => googleLogin()}
                   label='sign up with an account'
                   icon={<FcGoogle className="text-xl" />}
                   styles='w-full flex flex-row-reverse gap-4 bg-black dark:bg-transparent 
@@ -172,27 +196,20 @@ const SignupPage = () => {
                      border dark:border-none border-gray-300'
                 />
               </div>
-
             )}
             <p className="max-w-md w-full text-center
             text-gray-600 dark:text-gray-300">
-           Already has an account ? {""}
-           <Link to='/sign-in' className="text-rose-800 font-medium">
-            Sign In
-           </Link>
+              Already have an account? {""}
+              <Link to='/sign-in' className="text-rose-800 font-medium">
+                Sign In
+              </Link>
             </p>
           </div>
         </div>
       </div>
-      <Toaster richColors/>
+      <Toaster richColors />
     </div>
   );
 };
 
 export default SignupPage;
-
-
-
-
-
-
