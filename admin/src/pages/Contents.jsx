@@ -42,7 +42,7 @@ const Contents = () => {
 
 
     const fetchContent = async () => {
-        updateURL({ page, navigate, location })
+        updateURL({ page, navigate, location });
         mutate(page)
 
     };
@@ -60,7 +60,7 @@ const Contents = () => {
        
         open();
     };
-    const handleAction = async() => {
+    const handleActions = async() => {
        switch (type) {
         case "delete":
             useDelete.mutate(selected);
@@ -228,7 +228,7 @@ const Contents = () => {
             message="Are you sure you want to perform this action"
             opened={opened}
             close={close}
-            handleClick={handleAction}
+            handleClick={handleActions}
             /> 
             
             {commentId && <Comments/>}

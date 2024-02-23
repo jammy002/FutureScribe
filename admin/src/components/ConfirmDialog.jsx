@@ -20,7 +20,6 @@ const ConfirmDialog = ({ message, opened, close, handleClick }) => {
     </div>
  </Modal>
     
- );
-    
+ );   
 };
 export default ConfirmDialog;
