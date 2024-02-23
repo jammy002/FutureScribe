@@ -132,7 +132,7 @@ export const useAction = (toast,  token) => {
         mutationFn: async ({id, status}) => {
          
 
-            const { data } = await axios.delete(
+            const { data } = await axios.patch(
                 `${API_URI}/posts/update/` + id,
                 {status: status},
                 

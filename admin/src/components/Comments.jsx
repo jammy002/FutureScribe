@@ -48,9 +48,8 @@ const Comments = () => {
                                         </div>
                                         <span className="text-sm text-red-600 cursor-pointer"
                                         onClick={()=> handleDelete(_id)}
-                                        >
-                                            
-                                            Delete</span>
+                                        > 
+                                        Delete</span>
                                     </div>
                                          <span className="text-sm to-gray-700 dark: text-gray-500">
                                             {desc}
