@@ -5,10 +5,10 @@ import { GiClothes } from "react-icons/gi";
 export const posts = [
   {
     _id: "655b3f037a397a2c8546c2f5",
-    title: "markdown-to-jsx v6 is now available",
+    title: "Prograaming language",
     slug: "markdown-to-jsx-v6-is-now-available",
     desc:
-      '<p>If you haven’t used <code>markdown-to-jsx</code> in the past, now is a great time! Try it live here: <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/probablyup/markdown-to-jsx"><u>https://probablyup.github.io/markdown-to-jsx/</u></a></p><p style="text-align: start">A shortlist of some of my favorite features:</p><h2 style="text-align: start"><strong>The ability to override the rendered representation of anything.</strong></h2><p style="text-align: start">Want to do something fancy with your <code>h1</code> tags? It’s as simple as defining an override:</p><pre><code>import Markdown from \'markdown-to-jsx\';\n' +
+      '<p>IThis is an index to notable programming languages, in current or historical use. Dialects of BASIC, esoteric programming languages, and markup languages are not included. A programming language does not need to be imperative or Turing-complete, but must be executable and so does not include markup languages such as HTML or XML, but does include domain-specific languages such as SQL and its dialects.\'markdown-to-jsx\';\n' +
       "import React from 'react';\n" +
       "import {render} from 'react-dom';\n" +
       "\n" +
@@ -38,7 +38,7 @@ export const posts = [
       "        Hello World\n" +
       "    &lt;/div&gt;\n" +
       ' */</code></pre><p style="text-align: start">HTML attributes can also be overridden, with a <a target="_blank" rel="noopener ugc nofollow" class="af lw" href="https://github.com/probablyup/markdown-to-jsx#usage"><u>few exceptions</u></a>.</p><h2 style="text-align: start"><strong>HTML is a-ok.</strong></h2><p style="text-align: start">Most markdown parsers steer clear of handling HTML and ones targeting JSX often have to resort to using <code>dangerouslySetInnerHTML</code>, an escape hatch that opens up your code to various security risks.</p><p style="text-align: start"><code>markdown-to-jsx</code> itself had to utilize this functionality in an earlier version, but as of v6 that is no longer the case! It’s all good now.</p><h2 style="text-align: start"><strong>Github-Flavored Markdown (GFM) syntaxes are supported.</strong></h2><p style="text-align: start">GFM <a target="_blank" rel="noopener ugc nofollow" class="af lw" href="https://github.github.com/gfm/"><u>adds a ton of useful functionality</u></a> to markdown like HTML tables, task lists, strikethrough formatting, and more.</p><p style="text-align: start">—</p><p style="text-align: start">All this weighs in at <a target="_blank" rel="noopener ugc nofollow" class="af lw" href="https://bundlephobia.com/result?p=markdown-to-jsx%406.0.3"><u>just over 5kB gzipped</u></a>.</p><p style="text-align: start">Special thanks are owed to the <a target="_blank" rel="noopener ugc nofollow" class="af lw" href="https://github.com/Khan/simple-markdown"><u>simple-markdown</u></a> team for creating an extremely simple, but highly-extensible markdown framework. A forked version of their parsing engine is the baseline for all the functionality above and much more to come. 🙏🏼</p><p style="text-align: start"><em>Check out my other project: </em><a target="_blank" rel="noopener ugc nofollow" class="af lw" href="https://buttermilk.js.org/"><u>buttermilk</u></a>, beautifully simple routing for React</p>',
-    img: "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700478543134original-ce6c979e9348162086c30c51d36d6890.png?alt=media&token=7d40d0f2-dcf6-48d2-acbe-f88484557681",
+    img: "https://www.unite.ai/wp-content/uploads/2023/11/DALL%C2%B7E-2023-11-12-13.06.04-Create-an-anime-style-illustration-of-a-half-human-half-robot-character-engaged-in-coding.-The-human-side-should-be-an-anime-character-of-East-Asian-.png",
     cat: "CODING",
     views:
       Array(50)[
@@ -95,9 +95,9 @@ export const posts = [
       ],
     user: {
       _id: "655ad72bd148ee58ab8d5871",
-      name: "kalyani ",      
+      name: "Kartik ",      
       image:
-        "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700452069593FB_IMG_1608124167539-removebg%20(1).png?alt=media&token=c2270464-bc4f-4ec3-8ea7-39ca905621b5",
+        "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/1708174904563img.jpg.png?alt=media&token=c8f04c8a-9251-4ee1-8a62-830c8e13c87c",
     },
     comments: ["655ca6965d5a025fa52b60c6", "655ce52bde4a69fbc727abac"],
     status: true,
@@ -107,10 +107,10 @@ export const posts = [
   },
   {
     _id: "655b21192255c0b35d4ab60b",
-    title: "Future scribe",
+    title: "what is Fashion ?",
     slug: "Future scribe",
-    desc: '<p>hello guys</p>',
-    img: "https://res.cloudinary.com/djs3wu5bg/image/upload/v1683874453/samples/bike.jpg",
+    desc: '<p>Fashion is an ever-evolving expression of style, culture, and identity, deeply ingrained in human history and society. It encompasses not only clothing but also footwear, accessories, makeup, hairstyles, and even lifestyle choices. Fashion trends reflect the zeitgeist of a particular era, influenced by a myriad of factors such as social, political, economic, and technological developments.Throughout history, fashion has served as a means of self-expression, allowing individuals to communicate their personalities, aspirations, and affiliations. From the opulent attire of royalty to the countercultural fashion statements of youth subcultures, clothing has been used to signal status, rebellion, conformity, or belonging.In contemporary society, the fashion industry is a global powerhouse, encompassing design, manufacturing, retail, and media. Fashion weeks in cities like Paris, Milan, London, and New York set the stage for the unveiling of new collections by renowned designers, shaping the direction of trends for the seasons to come.The democratization of fashion through mass production, fast fashion, and online retail has made style accessible to a broader audience, blurring the lines between high fashion and streetwear. Social media platforms like Instagram and TikTok have democratized the fashion influencer, allowing individuals to curate their personal brands and inspire millions with their unique style.However, the fashion industry also faces challenges, including issues of sustainability, ethical sourcing, and body inclusivity. Movements advocating for fair labor practices, eco-friendly materials, and size diversity are reshaping the landscape of fashion, urging brands to prioritize social and environmental responsibility. In conclusion, fashion is more than just clothing; it is a dynamic cultural phenomenon that reflects the values, attitudes, and aspirations of society. From haute couture runways to everyday street style, fashion continues to evolve, shape, and redefine our collective identity.</p>',
+    img: "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/Fashion.jpg?alt=media&token=53f568af-cd35-4ef8-932a-0dc956ac2ed9",
     cat: "FASHION",
     views:
       Array(23)[
@@ -140,9 +140,9 @@ export const posts = [
       ],
     user: {
       _id: "655ad72bd148ee58ab8d5871",
-      name: "kalyani",
+      name: "Ketan",
       image:
-        "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700452069593FB_IMG_1608124167539-removebg%20(1).png?alt=media&token=c2270464-bc4f-4ec3-8ea7-39ca905621b5",
+        "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/ketan.jpeg?alt=media&token=0eb111c1-a680-4f1f-882d-1802d10f04fa",
     },
     comments: [],
     status: true,
@@ -152,10 +152,10 @@ export const posts = [
   },
   {
     _id: "655ad816d148ee58ab8d58a1",
-    title: "Future scribe",
+    title: "Prograaming languages",
     slug: "Future scribe",
-    desc: '<p>Full maza </',
-    img: "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700452314589Codewave%20(1).png?alt=media&token=ee4b428f-0df4-47ec-af24-51ca1282f1a5",
+    desc: '<p>pragramming languages makes that changes This is an index to notable programming languages, in current or historical use. Dialects of BASIC, esoteric programming languages, and markup languages are not included. A programming language does not need to be imperative or Turing-complete, but must be executable and so does not include markup languages such as HTML or XML, but does include domain-specific languages such as SQL and its dialects. </',
+    img: "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/Coding2.png?alt=media&token=01c6201a-e01c-497f-aed1-565b41bd88c9",
     cat: "CODING",
     views:
       Array(29)[
@@ -191,9 +191,9 @@ export const posts = [
       ],
     user: {
       _id: "655ad72bd148ee58ab8d5871",
-      name: "kalyani",
+      name: "Roshan",
       image:
-        "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700452069593FB_IMG_1608124167539-removebg%20(1).png?alt=media&token=c2270464-bc4f-4ec3-8ea7-39ca905621b5",
+        "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/roshan.jpeg?alt=media&token=f6b516bd-b80d-4ea9-b6c5-a1b655f050ac",
     },
     comments: [
       "655c13510f6afc38e16cb28a",
@@ -201,8 +201,8 @@ export const posts = [
       "655c34ad46a378c9c55ff313",
     ],
     status: true,
-    createdAt: "2024-01-01T03:52:54.673Z",
-    updatedAt: "2024-01-01T07:12:43.796Z",
+    createdAt: "2024-02-24T03:52:54.673Z",
+    updatedAt: "2024-02-24T07:12:43.796Z",
     __v: 0,
   },
 ];
@@ -240,45 +240,45 @@ export const popular = {
   posts: [
     {
       _id: "655b3f037a397a2c8546c2f5",
-      title: "khan ",
+      title: "Artificial intelligence ",
       slug: "Future scribe",
-      img: "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700478543134original-ce6c979e9348162086c30c51d36d6890.png?alt=media&token=7d40d0f2-dcf6-48d2-acbe-f88484557681",
+      img: "https://www.unite.ai/wp-content/uploads/2023/11/DALL%C2%B7E-2023-11-12-13.06.04-Create-an-anime-style-illustration-of-a-half-human-half-robot-character-engaged-in-coding.-The-human-side-should-be-an-anime-character-of-East-Asian-.png",
       cat: "NEWS",
       createdAt: "2024-02-01T11:12:03.368Z",
       views: 50,
     },
     {
       _id: "655ad816d148ee58ab8d58a1",
-      title: "Future scribe",
+      title: "Programming languages ",
       slug: "Future scribe",
-      img: "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700452314589Codewave%20(1).png?alt=media&token=ee4b428f-0df4-47ec-af24-51ca1282f1a5",
+      img: "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/Coding2.png?alt=media&token=01c6201a-e01c-497f-aed1-565b41bd88c9",
       cat: "CODING",
       createdAt: "2024-02-01T03:52:54.673Z",
       views: 29,
     },
     {
       _id: "655b21192255c0b35d4ab60b",
-      title: "Future scribe",
+      title: "Future Fashion",
       slug: "Future scribe",
-      img: "https://res.cloudinary.com/djs3wu5bg/image/upload/v1683874453/samples/bike.jpg",
+      img: "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/Fashion.jpg?alt=media&token=53f568af-cd35-4ef8-932a-0dc956ac2ed9",
       cat: "FASHION",
-      createdAt: "2024-02-01T09:04:26.018Z",
+      createdAt: "2024-02-24T09:04:26.018Z",
       views: 23,
     },
   ],
   writers: [
     {
       _id: "655ad72bd148ee58ab8d5871",
-      name: " chaure kalyani jaikishen yadav",
+      name: "Ketan",
       image:
-        "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700452069593FB_IMG_1608124167539-removebg%20(1).png?alt=media&token=c2270464-bc4f-4ec3-8ea7-39ca905621b5",
+        "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/ketan.jpeg?alt=media&token=0eb111c1-a680-4f1f-882d-1802d10f04fa",
       followers: 2,
     },
     {
       _id: "655dbc30079fbf7891ad8df3",
-      name: "nikhil sharjeel khan",
+      name: "Roshan",
       image:
-        "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700641801793Akwasi_Asante_young_black_man_official_dress_natural_face_7a23439d-5b0c-461e-aca1-8a841465c7e1.png?alt=media&token=9c46a758-68cf-4124-83bd-7107af2979bf",
+        "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/roshan.jpeg?alt=media&token=f6b516bd-b80d-4ea9-b6c5-a1b655f050ac",
       followers: 0,
     },
   ],
@@ -286,15 +286,15 @@ export const popular = {
 
 export const writer = {
   _id: "655ad72bd148ee58ab8d5871",
-  name: "kalyani",
-  email: "kalyani@gmail.com",
+  name: "Ketan",
+  email: "Ketan@gmail.com",
   emailVerified: true,
   accountType: "Writer",
   image:
-    "https://firebasestorage.googleapis.com/v0/b/blogwave-4bb76.appspot.com/o/1700452069593FB_IMG_1608124167539-removebg%20(1).png?alt=media&token=c2270464-bc4f-4ec3-8ea7-39ca905621b5",
+    "https://firebasestorage.googleapis.com/v0/b/future-s-1f068.appspot.com/o/ketan.jpeg?alt=media&token=0eb111c1-a680-4f1f-882d-1802d10f04fa",
   provider: "khan",
-  createdAt: "2024-01-01T03:48:59.313Z",
-  updatedAt: "2024-01-01T08:31:31.779Z",
+  createdAt: "2024-02-24T03:48:59.313Z",
+  updatedAt: "2024-02-24T08:31:31.779Z",
   __v: 0,
   followers: [
     {
@@ -314,8 +314,8 @@ export const COMMENTS = [
     user: { _id: "655acf151a4659413d8ab136", name: "Roshan" },
     post: "655b3f037a397a2c8546c2f5",
     desc: "Hi",
-    createdAt: "2024-02-01T17:13:15.842Z",
-    updatedAt: "2024-02-01T17:13:15.842Z",
+    createdAt: "2024-02-24T17:13:15.842Z",
+    updatedAt: "2024-02-24T17:13:15.842Z",
     __v: 0,
   },
   {
@@ -323,8 +323,8 @@ export const COMMENTS = [
     user: { _id: "655acf151a4659413d8ab136", name: "roshan" },
     post: "655b3f037a397a2c8546c2f5",
     desc: "Check out",
-    createdAt: "2024-02-01T12:46:15.004Z",
-    updatedAt: "2024-02-01T12:46:15.004Z",
+    createdAt: "2024-02-24T12:46:15.004Z",
+    updatedAt: "2024-02-24T12:46:15.004Z",
     __v: 0,
   },
 ];

@@ -1,7 +1,7 @@
 import Markdown from "markdown-to-jsx";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { PopularPost, PopularWriter, PostComments,  } from "../components";
+import { PopularPost, PopularWriter, PostComments } from "../components";
 import useStore from "../store";
 import { popular, posts } from "../utils/dummyData";
 
@@ -10,6 +10,7 @@ const BlogDetails = () => {
 
   const { id } = useParams();
   const [post, setPost] = useState(posts[1]);
+  const [isReading, setIsReading] = useState(false); // State to track text-to-speech
 
   useEffect(() => {
     if (id) {
@@ -17,6 +18,30 @@ const BlogDetails = () => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   }, [id]);
+
+  // Function to toggle text-to-speech
+  const toggleReading = () => {
+    setIsReading(!isReading);
+    if (!isReading) {
+      // Start reading
+      readText(post?.desc);
+    } else {
+      // Stop reading
+      stopReading();
+    }
+  };
+
+  // Function to read text aloud
+  const readText = (text) => {
+    const speech = new SpeechSynthesisUtterance();
+    speech.text = text;
+    window.speechSynthesis.speak(speech);
+  };
+
+  // Function to stop reading
+  const stopReading = () => {
+    window.speechSynthesis.cancel();
+  };
 
   if (!post)
     return (
@@ -27,6 +52,17 @@ const BlogDetails = () => {
 
   return (
     <div className='w-full  px-0 md:px-10 py-8 2xl:px-20'>
+
+      {/* Play Button */}
+      <div className='mt-4 mb-4'>
+        <button
+          className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+          onClick={toggleReading}
+        >
+          {isReading ? 'Stop Reading' : 'Read Aloud'}
+        </button>
+      </div>
+
       <div className='w-full flex flex-col-reverse md:flex-row gap-2 gap-y-5 items-center'>
         <div className='w-full md:w-1/2 flex flex-col gap-8'>
           <h1 className='text-3xl md:text-5xl font-bold text-slate-800 dark:text-white'>
@@ -83,7 +119,7 @@ const BlogDetails = () => {
           {/* COMMENTS SECTION */}
           <div className='w-full'>
             {<PostComments postId={id} />}
-            </div>
+          </div>
         </div>
 
         {/* RIGHT */}

@@ -158,7 +158,7 @@ const Contents = () => {
                                 ? " bg-opacity-30"
                                 : "bg-opacity-70"
                             
-                            }rounded-full font-semibold px-4 py-1.5`}
+                            }rounded font-semibold px-4 py-1.5`}
                             >
                            {el?.status === true ? "Active" : "Disabled"}
                             </span>
@@ -198,6 +198,7 @@ const Contents = () => {
                                     <Menu.Label>Danger zone</Menu.Label>
                                     <Menu.Item
                                     color="red"
+                                    rounded
                                     leftSection={<MdOutlineDeleteOutline />}
                                     onClick={() => handlePerformAction("delete", el?._id)}
                                     >
