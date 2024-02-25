@@ -4,12 +4,14 @@ import { Button, Divider, Inputbox, Logo } from '../components';
 import { FcGoogle } from 'react-icons/fc';
 import { Toaster, toast} from "sonner";
 import { Link } from 'react-router-dom';
-
+import { getGoogleSignIn } from '../utils/apiCalls';
+import { saveUserInfo } from '../utils';
+import useStore from '../store';
 
 
 const LoginPage = () => {
+  const { user, signIn, setIsLoading } = useStore()
 
-  const user = {};
 
   const [data, setData] = useState({
     email: "",
@@ -25,12 +27,24 @@ const LoginPage = () => {
     });
   };
   
-  const googleLogin = async()=> {};
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      setIsLoading(true);
+      const user = await getGoogleSignIn(tokenResponse.access_token);
+      setIsLoading(false)
+      console.log(user)
+      if (user.data.success === true) {
+        saveUserInfo(user.data, signIn)
+      } else {
+        toast.error(user?.message)
+      }
+    },
+  })
   const handleSubmit = async()=> {};
   
 
-  if (user.token) window.location.replace("/");
-
+  if ( user && user.token) 
+    window.location.replace("/");
   return <div className='flex w-full h-[100vh]'>
     <div className='hidden md:flex flex-col gap-y-4 w-1/3 min-h-screen
     bg-black items-center justify-center'>

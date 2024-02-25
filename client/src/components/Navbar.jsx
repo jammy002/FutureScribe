@@ -117,11 +117,13 @@ const Navbar = () => {
   const [showProfile, setShowProfile] = useState(false);
 
   const handleSignOut = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("userInfo");
     signOut();
+    setTimeout(() => {
+      window.location.replace("/")
+    }, 5000);
   };
 
-  console.log(user);
   return (
     <nav className='flex flex-col md:flex-row w-full py-5  items-center justify-between gap-4 md:gap-0'>
       <div className='flex gap-2 text-[20px] md:hidden lg:flex'>

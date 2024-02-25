@@ -34,9 +34,8 @@ const SignupPage = () => {
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       setIsLoading(true);
-
-      const user = await getGoogleSignUp(tokenResponse.user.access_token);
-
+      console.log(tokenResponse)
+      const user = await getGoogleSignUp(tokenResponse.access_token);
       setIsLoading(false)
       if (user.success === true) {
         saveUserInfo(user, signIn)

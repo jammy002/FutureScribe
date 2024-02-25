@@ -94,6 +94,32 @@ export const googleSignUp = async (req, res, next) => {
   }
 };
 
+export const googleSignIn = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    const user = await Users.findOne({ email });
+
+    if (!user) {
+    
+      next("User not found. Please sign up first.");
+      return;
+    }
+
+    const token = createJWT(user?._id);
+
+    res.status(200).json({
+      success: true,
+      message: "Sign in successful",
+      user,
+      token,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
