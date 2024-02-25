@@ -13,7 +13,6 @@ export const register = async (req, res, next) => {
       accountType,
       provider,
     } = req.body;
-    console.log(req.body)
     //validate fileds
     if (!(firstname || lastname || email || password)) {
       return next("Provide Required Fields!");

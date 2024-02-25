@@ -71,3 +71,14 @@ export const emailSignUp = async(data) =>{
         
     }
 }
+
+export const emailSignIn = async (data) => {
+    try {
+      const result = await axios.post(`${API_URL}/auth/login`, data);
+      return result?.data;
+    } catch (error) {
+      const err = error?.response?.data || error?.response;
+      console.log(error);
+      return err;
+    }
+  };

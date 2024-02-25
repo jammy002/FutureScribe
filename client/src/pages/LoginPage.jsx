@@ -4,7 +4,7 @@ import { Button, Divider, Inputbox, Logo } from '../components';
 import { FcGoogle } from 'react-icons/fc';
 import { Toaster, toast} from "sonner";
 import { Link } from 'react-router-dom';
-import { getGoogleSignIn } from '../utils/apiCalls';
+import { getGoogleSignIn,emailSignIn } from '../utils/apiCalls';
 import { saveUserInfo } from '../utils';
 import useStore from '../store';
 
@@ -40,8 +40,25 @@ const LoginPage = () => {
       }
     },
   })
-  const handleSubmit = async()=> {};
-  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const result = await emailSignIn(data); 
+      
+      if (result?.success === true) {
+        saveUserInfo(result.data, signIn);
+      } else {
+        toast.error(result?.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("An error occurred. Please try again.");
+    }
+
+    setIsLoading(false);
+  };  
 
   if ( user && user.token) 
     window.location.replace("/");
