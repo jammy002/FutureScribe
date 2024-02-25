@@ -29,11 +29,16 @@ const BlogDetails = () => {
     }
   };
 
-  const readText = (text) => {
+  const readText = (text, lang) => {
     const speech = new SpeechSynthesisUtterance();
     speech.text = text;
+    speech.lang = lang; // Set the language code for the desired language
     window.speechSynthesis.speak(speech);
   };
+  
+
+  // readText(post?.desc, "hi-IN");
+  
 
   const stopReading = () => {
     window.speechSynthesis.cancel();
