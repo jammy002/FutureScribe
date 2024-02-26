@@ -19,7 +19,7 @@ function Layout (){
 }
 function App() {
   const {theme, isLoading} = useStore();   
-  console.log(theme);    
+  // console.log(theme);    
   return (
    <main className={theme}>
     <div className='w-full min-h-screen

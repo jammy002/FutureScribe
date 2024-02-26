@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { CATEGORIES, posts,popular, writers } from '../utils/dummyData.js';
 import { Banner,Card,Pagination,PopularPost,PopularWriter } from '../components';
 import { Link } from 'react-router-dom';
+import { usePosts } from '../hooks/post-hook.js';
 
 const Home = () => {
-  const numOfPages = 4;
-  const [page, setPage] = useState(0);
-
+const {posts,numOfPages,setPage} = usePosts({writerId: ""})
 const randomIndex = Math.floor(Math.random() * posts.length);
 
  const handlePageChange = (val) =>{

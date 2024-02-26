@@ -31,9 +31,6 @@ export const saveUserInfo = (user, signIn) => {
     }, 1500);
 };
 
-
-
-
 export const uploadFile = (setFileURL, file) => {
     const storage = getStorage(app);
     const name = new Date().getTime() + file.name;
@@ -66,3 +63,18 @@ export const uploadFile = (setFileURL, file) => {
     );
 };
 
+export const updateURL = ({ page, navigate, location, cat }) => {
+  const params = new URLSearchParams();
+
+    if (cat) { 
+        params.set("cat", cat);
+       }
+
+    if (page && page > 1) { 
+        params.set("page", page);
+    }
+
+    const newURL = `${location.pathname}?${params.toString()}`;
+    navigate(newURL, { replace: true });
+    return newURL;
+    };

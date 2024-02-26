@@ -116,12 +116,12 @@ const Navbar = () => {
   const { user, signOut } = useStore();
   const [showProfile, setShowProfile] = useState(false);
 
-  const handleSignOut = () => {
-    localStorage.removeItem("userInfo");
+  const handleSignOut = () => {   
+    localStorage.removeItem("userInfo");   
     signOut();
-    setTimeout(() => {
-      window.location.replace("/")
-    }, 5000);
+    // setTimeout(() => {
+    //   window.location.replace("/")
+    // }, 5000);
   };
 
   return (
