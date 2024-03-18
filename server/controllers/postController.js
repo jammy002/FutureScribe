@@ -149,7 +149,7 @@ export const getPostContent = async (req, res, next) => {
 
     //records count
     const totalPost = await Posts.countDocuments({ user: userId });
-    const numOfPage = Math.ceil(totalPost / limit);
+    const numOfPages = Math.ceil(totalPost / limit);
 
     queryResult = queryResult.skip(skip).limit(limit);
 
@@ -161,7 +161,7 @@ export const getPostContent = async (req, res, next) => {
       totalPost,
       data: posts,
       page,
-      numOfPage,
+      numOfPages,
     });
   } catch (error) {
     console.log(error);
@@ -279,7 +279,7 @@ export const getPosts = async (req, res, next) => {
     //records count
     const totalPost = await Posts.countDocuments(queryResult);
 
-    const numOfPage = Math.ceil(totalPost / limit);
+    const numOfPages = Math.ceil(totalPost / limit);
 
     queryResult = queryResult.skip(skip).limit(limit);
 
@@ -290,7 +290,7 @@ export const getPosts = async (req, res, next) => {
       totalPost,
       data: posts,
       page,
-      numOfPage,
+      numOfPages,
     });
   } catch (error) {
     console.log(error);

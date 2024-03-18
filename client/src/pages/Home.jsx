@@ -1,11 +1,18 @@
 import { useState } from 'react';
-import { CATEGORIES, posts,popular, writers } from '../utils/dummyData.js';
-import { Banner,Card,Pagination,PopularPost,PopularWriter } from '../components';
 import { Link } from 'react-router-dom';
-import { usePosts } from '../hooks/post-hook.js';
+import { 
+  Banner,
+  Card,
+  Pagination,
+  PopularPost,
+  PopularWriter,
+} from '../components';
+import { CATEGORIES} from '../utils/dummyData.js';
+import { usePopularPosts, usePosts } from '../hooks/post-hook.js';
 
 const Home = () => {
-const {posts,numOfPages,setPage} = usePosts({writerId: ""})
+const {posts,numOfPages,setPage} = usePosts({writerId: ""});
+const popular = usePopularPosts();
 const randomIndex = Math.floor(Math.random() * posts.length);
 
  const handlePageChange = (val) =>{
@@ -20,7 +27,8 @@ const randomIndex = Math.floor(Math.random() * posts.length);
         <span className='text-lg text-slate-500'>No posts Available</span>
       </div>
     );
-  return <div className='py-10 2xl:py-5'>
+  return (
+  <div className='py-10 2xl:py-5'>
     <Banner post={posts[randomIndex]} />
     <div className='px-0 lg:pl-20 2xl:px-20'>
       {/*categories*/}
@@ -52,13 +60,11 @@ const randomIndex = Math.floor(Math.random() * posts.length);
                   ))}
                  <div className='w-full flex items-cemter justify-center'>
               <Pagination
-                totalPages={numOfPages}
+                totalPages={parseInt(numOfPages)}
                 onPageChange={handlePageChange}
               />
-
                  </div>
-
-           </div>
+                 </div>
            {/* RIGHT SIDE */}
            <div className='w-full md:w-1/4 flex flex-col gap-y-12'>
             {/* POPULAR POST */}
@@ -70,7 +76,7 @@ const randomIndex = Math.floor(Math.random() * posts.length);
            </div>
         </div>
     </div>
-  </div>;
+  </div> )
 };
 
 export default Home;

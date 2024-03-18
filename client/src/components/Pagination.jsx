@@ -8,7 +8,7 @@ const Pagination = ({ totalPages, onPageChange }) => {
     const showEllipses = totalPages > 8;
   
     return (
-      <div className='pagination'>
+      <div className='pagination-btn'>
         <button
           className='pagination-btn'
           onClick={() => onPageChange(Math.max(currentPage - 1, 1))}

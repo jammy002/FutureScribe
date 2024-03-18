@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Card, Pagination, PopularPost, PopularWriter } from "../components";
 import { popular, posts } from "../utils/dummyData";
+import {usePopularPosts, usePosts} from "../hooks/post-hook";
 
 const CategoriesPage = () => {
   const query = new URLSearchParams(window.location.search).get("cat");
-  const numOfPages = 4;
-  const [page, setPage] = useState(0);
+  const { posts, numOfPages, setPage } = usePosts({writerId: "" ,});
+  const popular = usePopularPosts();
 
   const handlePageChange = (val) => {
     setPage(val);

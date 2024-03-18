@@ -31,7 +31,7 @@ export const usePosts= ({writerId}) => {
                 writerId || ""
             }`
             );
-            setPosts(data?.data || [])
+            setPosts(data?.data || []);
             setNumOfPages(data?.numOfPages);
             } catch (error) {
                 toast.error("something went wrong.");
@@ -48,4 +48,28 @@ export const usePosts= ({writerId}) => {
            return {
             page,posts, numOfPages,setPage,
            };
+};
+
+export const usePopularPosts =() => {
+    const [popular, setPopular] = useState([])
+
+useEffect(() =>{
+    const fetchPosts= async ()=>{
+
+       try {
+        const {data} = await axios.get(`${API_URL}/posts/popular`);
+
+        setPopular(data?.data)
+        
+       } catch (error) {
+        toast.error("something went wrong.");
+
+                const err= error?.response?.data || error?.response;
+                console.log(error);
+       }
+    };
+    fetchPosts();
+}, []);
+
+return popular;
 };
