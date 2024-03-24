@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useStore from "../store";
-import { COMMENTS } from "../utils/dummyData";
-import Button from "./Button";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 import Profile from "../assets/profile.png";
 import { Toaster, toast } from "sonner";
 import { deletePostComments, getPostComments, postComments } from "../utils/apiCalls";
@@ -11,45 +10,60 @@ const PostComments = ({ postId }) => {
   const { user } = useStore();
   const [comments, setComments] = useState([]);
   const [desc, setDesc] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const fetchComments = async () => {
+    setLoading(true);
     try {
       const res = await getPostComments(postId);
-      console.log(res);
-      setComments(res);
+      setComments(Array.isArray(res) ? res : []);
     } catch (error) {
       console.error("Error fetching comments:", error);
-      // Handle the error, e.g., show a message to the user or set default comments
+      toast.error("Failed to fetch comments. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
-  
+
   const handleDeleteComment = async (id) => {
-    const res = await deletePostComments(id, user?.token, postId);
-    
-    if (res?.success) {
-      fetchComments();
+    try {
+      const res = await deletePostComments(id, user?.token, postId);
+      if (res?.success) {
+        fetchComments();
+        toast.success("Comment deleted successfully.");
+      } else {
+        toast.error("Failed to delete comment. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+      toast.error("Failed to delete comment. Please try again later.");
     }
   };
 
   const handlePostComment = async (e) => {
-   e.preventDefault()
-   const res = await postComments(postId, user?.token, desc);
-     
-   if (res?.success === true) {
-    setDesc("");
-    fetchComments();
-    toast.success("published successfully");
-   } else {
-    toast.error("something went wrong , please try again ")
-   }
-
-
-
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await postComments(postId, user?.token, desc);
+      if (res?.success === true) {
+        setDesc("");
+        fetchComments();
+        toast.success("Comment published successfully");
+      } else {
+        toast.error("Failed to publish comment. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error posting comment:", error);
+      toast.error("Failed to publish comment. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchComments();
   }, [postId]);
+
   return (
     <div className='w-full py-10'>
       <p className='text-lg text-slate-700 dark:text-slate-500 mb-6'>
@@ -57,7 +71,7 @@ const PostComments = ({ postId }) => {
       </p>
 
       {user?.token ? (
-        <form className='flex flex-col mb-6' OnSubmit={handlePostComment}>
+        <form className='flex flex-col mb-6' onSubmit={handlePostComment}>
           <textarea
             name='desc'
             onChange={(e) => setDesc(e.target.value)}
@@ -70,9 +84,9 @@ const PostComments = ({ postId }) => {
           <div className='w-full flex justify-end mt-2'>
             <Button
               type={"submit"}
-              onClick={() => {}}
               label='Submit'
               styles='bg-blue-600 text-white py-2 px-5 rounded'
+              disabled={loading}
             />
           </div>
         </form>
@@ -86,12 +100,14 @@ const PostComments = ({ postId }) => {
       )}
 
       <div className='w-full h-full flex flex-col gap-10 2xl:gap-y-14 px-2'>
-        {comments?.length === 0 ? (
+        {loading ? (
+          <span className='text-base text-slate-600'>Loading comments...</span>
+        ) : comments?.length === 0 ? (
           <span className='text-base text-slate-600'>
-            No Comment, be the first to comment
+            No comments yet. Be the first to comment!
           </span>
         ) : (
-          comments?.map((el) => (
+          comments.map((el) => (
             <div key={el?._id} className='w-full flex gap-4 items-start'>
               <img
                 src={el?.user?.image || Profile}
