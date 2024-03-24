@@ -12,10 +12,17 @@ const PostComments = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [desc, setDesc] = useState("");
 
-  const fetchComments = async()=> {
-    const res = await getPostComments(postId);
-    setComments(res);
-  }
+  const fetchComments = async () => {
+    try {
+      const res = await getPostComments(postId);
+      console.log(res);
+      setComments(res);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+      // Handle the error, e.g., show a message to the user or set default comments
+    }
+  };
+  
   const handleDeleteComment = async (id) => {
     const res = await deletePostComments(id, user?.token, postId);
     

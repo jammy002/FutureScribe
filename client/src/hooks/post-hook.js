@@ -18,7 +18,7 @@ export const usePosts= ({writerId}) => {
     const [category , setCategory] = useState(searchParams.get("cat") || "" );
 
     const [posts, setPosts] = useState([]);
-        const [numOfPages, setNumOfPages] = useStore(1);
+        const [numOfPages, setNumOfPages] = useState(1);
     
            useEffect(()=>{
             const fetchPosts = async() => {

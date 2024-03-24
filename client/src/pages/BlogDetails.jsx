@@ -12,6 +12,7 @@ const BlogDetails = () => {
 
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const[setIsReading,isReading]=useState(true);
 
   const popular = usePopularPosts();
   useEffect(() => {

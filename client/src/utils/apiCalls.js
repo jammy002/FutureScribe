@@ -98,7 +98,7 @@ export const getSinglePost = async (id) => {
 
 export const getPostComments = async (id) => {
     try {
-        const { data } = await axios.get(`${API_URL}/posts/comment/${id}`);
+        const { data } = await axios.get(`${API_URL}/posts/comments/${id}`);
         return data?.data;
     } catch (error) {
         const err = error?.response?.data || error?.response;
