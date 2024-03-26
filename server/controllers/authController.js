@@ -129,14 +129,15 @@ export const login = async (req, res, next) => {
     }
 
     // find user by email
-    const user = await Users.findOne({ email });
+    const user = await Users.findOne({ email }).select("+password")
+    
     console.log(user)
     if (!user) {
       return next("Invalid email or password");
     }
 
     // Google account signed in
-    if (!password && user?.provider === "Google") {
+    if (user?.provider === "Google" && !password) {
       const token = createJWT(user?._id);
 
       return res.status(201).json({
