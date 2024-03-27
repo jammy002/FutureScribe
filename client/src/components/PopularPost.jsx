@@ -19,7 +19,7 @@ const PopularPost = ({ posts }) => {
             text-white text-[12px 2xl:text-sm]`}>
             {post.cat}
           </span>
-          <Link to={`/post?.slug/${post?._id}`}
+          <Link to={`/post/${post?._id}`}   
           className='text-black dark:text-white'>
             {post?.title}
           </Link>

@@ -1,5 +1,3 @@
-
-
 import axios from "axios"
 export const API_URL = 'http://localhost:8800';
 
@@ -113,7 +111,7 @@ export const postComments = async (id, token, data) => {
     try {
         const result = await axios.post(`${API_URL}/posts/comment/${id}`, data,
             {
-                headers: { Authorization: "Bearer" + token },
+                headers: { Authorization: `Bearer ${token}` },
             });
         return result?.data;
     } catch (error) {

@@ -4,14 +4,14 @@ import { Select, useMantineColorScheme } from '@mantine/core'
 import useStore from '../store'
 import { useDisclosure } from '@mantine/hooks'
 import { useAnalytics } from '../hooks/post-hook'
-import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import clsx from 'clsx'    
+import { useEffect, useState } from 'react'  
 import Stats from '../components/Stats'
 import Graph from '../components/Graph'
 
 const Analytics = () => {
 
-  const {colorScheme} = useMantineColorScheme();
+  const {colorScheme} = useMantineColorScheme();   
 
   const {user} = useStore();
  const [numOfDays, setNumberOfDays] =useState(28);

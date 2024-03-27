@@ -17,7 +17,7 @@ const Comments = () => {
         setOpen(false);
     };
     const handleDelete = (id) =>{
-        useDelete.mutate({id, postId:commentId});
+        useDelete.mutate({id, postId: commentId});
     };
     useEffect(() => {
         mutate(commentId);
@@ -41,7 +41,7 @@ const Comments = () => {
                                     <div className="w-full flex justify-between">
                                         <div className="w-full flex items-center gap-2">
                                         <p className="text-slate-600 dark:text-gray-400 font-medium">
-                                            {user.neme}
+                                            {user.name}
                                             </p>
                                         <span className="text-slate-700 dark:text-gray-500 text-xs italic">
                                             {new Date(createdAt).toDateString()}</span>

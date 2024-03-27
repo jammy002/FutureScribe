@@ -29,7 +29,7 @@ const WritePost = () => {
   const [visible, { toggle }] = useDisclosure(false);
   const { isPending, mutate } = useCreatePost(toast, toggle, user?.token);
 
-  const [category, setCategory] = useState("NEWS");
+  const [category, setCategory] = useState(" ");
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState("");
   const [fileURL, setFileURL] = useState("");
@@ -54,7 +54,7 @@ const WritePost = () => {
 
   const handleSubmit = async () => {
 
-    if (!fileURL || !category || !title) {
+    if (!fileURL || !title) {
       toast.error("All fields are required");
       return;
     }
@@ -88,14 +88,17 @@ const WritePost = () => {
             defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-
-          <Select
-            label='Category'
-            defaultValue={"NEWS"}
-            placeholder="Pick Category"
-            data={["NEWS", "SPORTS", "CODING", "EDUCATION", "FASHION"]}
-            onChange={(val) => setCategory(val)}
-          />
+           <div className="flex-1">
+           <TextInput
+            withAsterisk
+            label="Post Category"
+            className="w-full flex-1"
+            placeholder="Post category"
+            defaultValue={title}
+            onChange={(e) => setCategory(e.target.value)}
+           />
+           </div>
+           
           <label className="flex items-center gap-1 text-base cursor-pointer" htmlFor="imgUpload">
             <input
               type="file"

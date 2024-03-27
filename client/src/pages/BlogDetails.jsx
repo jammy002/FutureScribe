@@ -1,7 +1,7 @@
-import Markdown from "markdown-to-jsx";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { FaPlay, FaStop } from 'react-icons/fa'; // Importing the play and stop icons from react-icons
+import Markdown from "markdown-to-jsx";
+import { FaPlay, FaStop, FaShare } from 'react-icons/fa';
 import { PopularPost, PopularWriter, PostComments } from "../components";
 import useStore from "../store";
 import { getSinglePost } from "../utils/apiCalls";
@@ -9,26 +9,23 @@ import { usePopularPosts } from "../hooks/post-hook";
 
 const BlogDetails = () => {
   const { setIsLoading } = useStore();
-
   const { id } = useParams();
   const [post, setPost] = useState(null);
-  const [isReading, setIsReading] = useState(true);
-
-
+  const [isReading, setIsReading] = useState(false);
   const popular = usePopularPosts();
-  useEffect(() => {
-    const fetchPost = async() => {
-      setIsLoading(true)
-      const data= await getSinglePost(id)
 
+  useEffect(() => {
+    const fetchPost = async () => {
+      setIsLoading(true);
+      const data = await getSinglePost(id);
       setPost(data || {});
       setIsLoading(false);
-    }
+    };
     if (id) {
-       fetchPost();
+      fetchPost();
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
-  }, [id]);
+  }, [id, setIsLoading]);
 
   const toggleReading = () => {
     setIsReading(!isReading);
@@ -45,24 +42,40 @@ const BlogDetails = () => {
     speech.lang = lang; // Set the language code for the desired language
     window.speechSynthesis.speak(speech);
   };
-  
-
-  // readText(post?.desc, "hi-IN");
-  
 
   const stopReading = () => {
     window.speechSynthesis.cancel();
   };
 
-  if (!post)
+  const shareBlog = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: post.title,
+          text: post.desc,
+          url: window.location.href
+        });
+        console.log("Shared successfully");
+      } catch (error) {
+        console.error("Error sharing:", error);
+      }
+    } else {
+
+      console.log("Web Share API not supported, implement fallback sharing method here.");
+      
+    }
+  };
+
+  if (!post) {
     return (
       <div className='w-full h-full py-8 flex items-center justify-center'>
         <span className='text-xl text-slate-500'>Loading...</span>
       </div>
     );
+  }
 
   return (
-    <div className='w-full  px-0 md:px-10 py-8 2xl:px-20'>
+    <div className='w-full px-0 md:px-10 py-8 2xl:px-20'>
       <div className='w-full flex flex-col-reverse md:flex-row gap-2 gap-y-5 items-center'>
         <div className='w-full md:w-1/2 flex flex-col gap-8'>
           <h1 className='text-3xl md:text-5xl font-bold text-slate-800 dark:text-white'>
@@ -93,22 +106,26 @@ const BlogDetails = () => {
                 </span>
               </div>
             </Link>
-            <div className='flex items-center cursor-pointer' onClick={toggleReading}>
-              {isReading ? <FaStop className='text-red-500 ' /> : <FaPlay className='text-green-500' />}
-              <p className='ml-2 text-sm text-white'>{isReading ? 'Stop Reading' : 'Read Aloud'}</p>
+            <div className='flex items-center gap-5'>
+              <button onClick={toggleReading} className='flex items-center cursor-pointer'>
+                {isReading ? <FaStop className='text-red-500' /> : <FaPlay className='text-green-500' />}
+                <p className='ml-2 text-sm text-white'>{isReading ? 'Stop Reading' : 'Read Aloud'}</p>
+              </button>
+              <button onClick={shareBlog} className='flex items-center cursor-pointer'>
+                <FaShare className='text-blue-500' />
+                <p className='ml-2 text-sm text-white'>Share</p> 
+              </button>
             </div>
           </div>
         </div>
         <img
           src={post?.img}
           alt={post?.title}
-          className='w-full md:w-1/2 h-auto md:h-[360px] 2xl:h-[460px] 
-          rounded object-contain'
+          className='w-full md:w-1/2 h-auto md:h-[360px] 2xl:h-[460px] rounded object-contain'
         />
       </div>
       <div className='w-full flex flex-col md:flex-row gapx-10 2xl:gap-x-28 mt-10'>
-        {/* LEFT */}
-        <div className='w-full md:w-2/3 flex flex-col text-black dark:text-gray-500 '>
+        <div className='w-full md:w-2/3 flex flex-col text-black dark:text-gray-500'>
           {post?.desc && (
             <Markdown
               options={{ wrapper: "article" }}
@@ -117,21 +134,17 @@ const BlogDetails = () => {
               {post?.desc}
             </Markdown>
           )}
-          {/* COMMENTS SECTION */}
           <div className='w-full'>
-            {<PostComments postId={id} />}
+            <PostComments postId={id} />
           </div>
         </div>
-        {/* RIGHT */}
         <div className='w-full md:w-1/4 flex flex-col gap-y-12'>
-          {/* POPULAR POSTS */}
           <PopularPost posts={popular?.posts} />
-          {/* POPULAR WRITERS */}
           <PopularWriter data={popular?.writers} />
         </div>
       </div>
     </div>
   );
 };
-
+  
 export default BlogDetails;
