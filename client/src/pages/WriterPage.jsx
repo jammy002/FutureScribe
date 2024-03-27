@@ -21,17 +21,17 @@ const WriterPage = () => {
 
   const { id } = useParams();
  const { posts, numOfPages, setPage} = usePosts({
-  writerId:id,
+  writerId: id,
  });
  const popular= usePopularPosts();
  const [writer, setWriter] = useState(null)
 
-  const handlePageChange = (val) => {
+  const handlePageChange = (val) => { 
     setPage(val);
 
     console.log(val);
   };
-   
+
   const fetchWriter= async()=>{
     const res= await getWriterInfo(id);
     setWriter(res);
@@ -49,6 +49,7 @@ const WriterPage = () => {
     
     fetchWriter();
   }, [id]);
+
   const followerIds = writer?.followers.map((f) => f.followerId);
 
   if (!writer)
@@ -90,7 +91,7 @@ const WriterPage = () => {
           {user?.token && (
             <div>
               {!followerIds?.includes(user?.user?._id) ? (
-                <Button
+                <Button  
                   label='Follow'
                   onClick={() => handleFollow()}
                   styles='text-slate-800 text-semibold md:-mt-4 px-6 py-1 rounded-full bg-white'

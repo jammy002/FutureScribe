@@ -111,7 +111,7 @@ export const postComments = async (id, token, data) => {
     try {
         const result = await axios.post(`${API_URL}/posts/comment/${id}`, data,
             {
-                headers: { Authorization: `Bearer ${token}` },
+                headers: { Authorization: "Bearer" + token },
             });
         return result?.data;
     } catch (error) {
@@ -132,6 +132,7 @@ export const deletePostComments = async (id, token, postId) => {
                 },
             }
         );
+        return result?.data;
     } catch (error) {
         const err = error?.response?.data || error?.response;
         console.log(error);
@@ -141,6 +142,7 @@ export const deletePostComments = async (id, token, postId) => {
 export const getWriterInfo = async (id) => {
     try {
         const {data} = await axios.get(`${API_URL}/users/get-user/${id}`);
+
            return data?.data;
     } catch (error) {
         const err = error?.response?.data || error?.response;
@@ -156,6 +158,7 @@ export const followWriter = async (id, token) => {
                 Authorization: `Bearer ${token}`,
             },
         });
+        return res?.data;
     } catch (error) {
         const err = error?.response?.data || error?.response;
         console.log(error);
