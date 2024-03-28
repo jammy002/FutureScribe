@@ -38,7 +38,7 @@ const Banner = ({post}) => {
                    >
                    Read more
                    </Link>
-                   <Link to={`/writer/${post?.slug}/${post?._id}`}
+                   <Link to={`/writer/${post?.user._id}`}
                    className="flex gap-3 mt-4 items-center"
                    >
                    <img src={post?.user?.image} alt={"User Profile"} 

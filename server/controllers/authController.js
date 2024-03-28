@@ -5,8 +5,8 @@ import { sendVerificationEmail } from "../utils/sendEmail.js";
 export const register = async (req, res, next) => {
   try {
     const {
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
       password,
       image,
@@ -14,7 +14,7 @@ export const register = async (req, res, next) => {
       provider,
     } = req.body;
     //validate fileds
-    if (!(firstname || lastname || email || password)) {
+    if (!(firstName || lastName || email || password)) {
       return next("Provide Required Fields!");
     }
 
@@ -29,7 +29,7 @@ export const register = async (req, res, next) => {
 
     const hashedPassword = await hashString(password);
     const user = await Users.create({
-      name: firstname + " " + lastname,
+      name: firstName + " " + lastName,
       email,
       password: hashedPassword,
       image,

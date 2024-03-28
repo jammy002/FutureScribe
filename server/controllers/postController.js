@@ -202,7 +202,8 @@ export const createPost = async (req, res, next) => {
 
 export const commentPost = async (req, res, next) => {
   try {
-    const { desc } = req.body;
+    const bodyKeys = Object.keys(req.body);
+    const desc  = bodyKeys[0];
     const { userId } = req.body.user;
     const { id } = req.params;
 
@@ -355,35 +356,56 @@ export const getPopularContents = async (req, res, next) => {
     res.status(404).json({ message: error.message });
   }
 };
-
 export const getPost = async (req, res, next) => {
   try {
     const { postId } = req.params;
+    const { userId } = req.body; // Assuming userId is provided in the request body
 
-    const post = await Posts.findById(postId).populate({
-      path: "user",
-      select: "name image -password",
-    });
+    // Check if the user has already viewed the post
+    const existingView = await Views.findOne({ user: userId, post: postId });
 
-    const newView = await Views.create({
-      user: post?.user,
-      post: postId,
-    });
+    if (existingView) {
+      // User has already viewed the post, return the post without adding a new view
+      const post = await Posts.findById(postId).populate({
+        path: "user",
+        select: "name image -password",
+      });
 
-    post.views.push(newView?._id);
+      res.status(200).json({
+        success: true,
+        message: "Post retrieved successfully",
+        data: post,
+      });
+    } else {
+      // User has not viewed the post, create a new view
+      const post = await Posts.findById(postId).populate({
+        path: "user",
+        select: "name image -password",
+      });
 
-    await Posts.findByIdAndUpdate(postId, post);
+      const newView = await Views.create({
+        user: userId,
+        post: postId,
+      });
 
-    res.status(200).json({
-      success: true,
-      message: "Successful",
-      data: post,
-    });
+      // Add the new view to the post's views array
+      post.views.push(newView._id);
+
+      // Save the updated post
+      await post.save();
+
+      res.status(200).json({
+        success: true,
+        message: "Post retrieved successfully",
+        data: post,
+      });
+    }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(404).json({ message: error.message });
   }
 };
+
 
 export const getComments = async (req, res, next) => {
   try {

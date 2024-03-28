@@ -6,7 +6,7 @@ export const getGoogleSignUp = async (accessToken) => {
     try {
         const user = await axios.get(
             "https://www.googleapis.com/oauth2/v3/userinfo", {
-            headers: { Authorization: `Bearer ${accessToken}` },
+            headers: { Authorization: `bearer ${accessToken}` },
         }
         ).then((res) => res.data);
         if (user?.sub) {
@@ -34,7 +34,7 @@ export const getGoogleSignIn = async (accessToken) => {
     try {
         const user = await axios.get(
             "https://www.googleapis.com/oauth2/v3/userinfo", {
-            headers: { Authorization: `Bearer ${accessToken}` },
+            headers: { Authorization: `bearer ${accessToken}` },
         }
         ).then((res) => res.data);
 
@@ -109,9 +109,9 @@ export const getPostComments = async (id) => {
 };
 export const postComments = async (id, token, data) => {
     try {
-        const result = await axios.post(`${API_URL}/posts/comment/${id}`, data,
+        const result = await axios.post(`${API_URL}/posts/comment/${id}`,data,
             {
-                headers: { Authorization: "Bearer" + token },
+                headers: { Authorization: `bearer ${token}` },
             });
         return result?.data;
     } catch (error) {
@@ -128,7 +128,7 @@ export const deletePostComments = async (id, token, postId) => {
             `${API_URL}/posts/comment/${id}/${postId}`,
             {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `bearer ${token}`,
                 },
             }
         );
@@ -155,7 +155,7 @@ export const followWriter = async (id, token) => {
     try {
         const res = await axios.post(`${API_URL}/users/follower/${id}`, null, {
               headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `bearer ${token}`,
             },
         });
         return res?.data;
