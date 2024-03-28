@@ -20,9 +20,10 @@ const WriterPage = () => {
   const { user } = useStore();
 
   const { id } = useParams();
- const { posts, numOfPages, setPage} = usePosts({
+ const { posts,postCount, numOfPages, setPage} = usePosts({
   writerId: id,
  });
+ console.log(postCount);
  const popular= usePopularPosts();
  const [writer, setWriter] = useState(null)
 
@@ -82,7 +83,7 @@ const WriterPage = () => {
 
             <div className='flex flex-col items-center'>
               <p className='text-gray-300 text-2xl font-semibold'>
-                {formatNumber(posts?.length ?? 0)}
+                {postCount}
               </p>
               <span className='text-gray-500'>Posts</span>
             </div>

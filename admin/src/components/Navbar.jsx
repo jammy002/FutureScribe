@@ -80,6 +80,14 @@ function UserMenu({ user, theme }) {
         <Menu.Item left={<FaUser style={{ width: rem(14), height: rem(14) }} />}>
           Profile
         </Menu.Item>
+        <Menu.Item left={<MdArrowForward style={{ width: rem(14), height: rem(14) }} />}>
+        <a
+                  
+                 href="http://localhost:3000/"
+                >
+                 Reader
+                </a>
+        </Menu.Item>
         <Menu.Item
           leftSection={<AiOutlineLogout style={{ width: rem(14), height: rem(14) }} />
           }

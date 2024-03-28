@@ -86,6 +86,7 @@ const MobileMenu = ({ user, signOut }) => {
                 >
                   Logout
                 </button>
+                
               </div>
             ) : (
               <Link to='/sign-in'>
@@ -178,12 +179,19 @@ const Navbar = () => {
               {showProfile && (
                 <div className='absolute bg-white dark:bg-[#2f2d30] py-6 px-6 flex flex-col shadow-2xl z-50 right-0 gap-3 rounded'>
                   <span className='dark:text-white'>Profile</span>
+                  <a
+                  className='dark:text-white'
+                 href="http://localhost:3001/auth"
+                >
+                  Writter
+                </a>
                   <span
                     className='border-t border-slate-300 text-rose-700'
                     onClick={handleSignOut}
                   >
                     Logout
                   </span>
+                  
                 </div>
               )}
             </div>

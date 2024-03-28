@@ -31,6 +31,8 @@ const Card = ({ post, index }) => {
           <span className='text-sm text-rose-600 font-semibold'>
             {post?.cat}
           </span>
+         
+
         </div>
 
         <h6 className='text-xl 2xl:text-3xl font-semibold text-black dark:text-white'>
@@ -49,6 +51,7 @@ const Card = ({ post, index }) => {
         >
           <span className='underline'>Read More</span> <AiOutlineArrowRight />
         </Link>
+        <span className='font-medium text-sm text-blue-600 '>written by {post?.user?.name}</span>
       </div>
     </div>
   );

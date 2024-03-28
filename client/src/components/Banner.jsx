@@ -12,7 +12,8 @@ const Banner = ({post}) => {
              src={post?.img} 
              alt={"Banner Image"}
              className="w-full md:w-3/4 h-64 md:h-[420px]
-              2xl:h-[560px] rounded"
+             
+             2xl:h-[560px] rounded"
              />
              </Link> 
              <div className="absolute flex flex-col md:right-10

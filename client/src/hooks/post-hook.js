@@ -16,7 +16,7 @@ export const usePosts= ({writerId}) => {
 
     const[page,setPage] = useState(searchParams.get("page") || 1);
     const [category , setCategory] = useState(searchParams.get("cat") || "" );
-
+    const [postCount, setPostCount] = useState([]);
     const [posts, setPosts] = useState([]);
         const [numOfPages, setNumOfPages] = useState(1);
     
@@ -32,6 +32,8 @@ export const usePosts= ({writerId}) => {
             }`
             );
             setPosts(data?.data || []);
+            setPostCount(data?.totalPost || 0 );
+            console.log(data)
             setNumOfPages(data?.numOfPages);
             } catch (error) {
                 toast.error("something went wrong.");
@@ -46,7 +48,7 @@ export const usePosts= ({writerId}) => {
             fetchPosts();
            }, [page, writerId]);
            return {
-            page,posts, numOfPages,setPage,
+            page,posts, numOfPages,setPage,postCount,
            };
 };
 
