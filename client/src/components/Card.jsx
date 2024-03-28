@@ -39,7 +39,7 @@ const Card = ({ post, index }) => {
 
         <div className='flex-1 overflow-hidden text-gray-600 dark:text-slate-500 text-sm text-justify'>
           <Markdown options={{ wrapper: "article" }}>
-            {post?.desc?.slice(0, 250) + "..."}
+            {post?.desc?.slice(0, 350) + "..."}
           </Markdown>
         </div>
 
