@@ -46,9 +46,8 @@ const LoginPage = () => {
 
     try {
       const result = await emailSignIn(data); 
-      
       if (result?.success === true) {
-        saveUserInfo(result.data, signIn);
+        saveUserInfo(result, signIn);
       } else {
         toast.error(result?.message);
       }
