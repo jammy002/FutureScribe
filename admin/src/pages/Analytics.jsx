@@ -17,7 +17,7 @@ const Analytics = () => {
  const [numOfDays, setNumberOfDays] =useState(28);
  const [visible, { toggle }] = useDisclosure(false);
  const {data, isPending, mutate}= useAnalytics(
-  toast.toggle,user?.token
+  toast,toggle,user?.token
  );
 
  const theme = colorScheme === "dark";
@@ -25,6 +25,7 @@ const Analytics = () => {
  useEffect(()=> {
    mutate(numOfDays);
  }, [numOfDays]);
+ console.log(data)
 
   return (
     <div className='w-full '>

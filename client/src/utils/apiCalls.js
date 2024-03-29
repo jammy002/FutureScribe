@@ -86,8 +86,30 @@ export const emailSignIn = async (data) => {
 
 export const getSinglePost = async (id) => {
     try {
-        const { data } = await axios.get(`${API_URL}/posts/${id}`);
-
+        const tokendataString = localStorage.getItem('userInfo');
+        let userId = null;
+        
+        if (tokendataString) {
+            try {
+                const tokendata = JSON.parse(tokendataString);
+                if (tokendata && tokendata.user && tokendata.user._id) {
+                    userId = tokendata.user._id;
+                } else {
+                    console.log("Error: Unable to access user _id");
+                }
+            } catch (error) {
+                console.error("Error parsing tokendata:", error);
+            }
+        } else {
+            console.log("Error: No userinfo found in local storage");
+        }
+        
+        const { data } = await axios.get(`${API_URL}/posts/${id}?userId=${userId}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
         return data?.data;
     } catch (error) {
         const err = error?.response?.data || error?.response;
@@ -95,6 +117,7 @@ export const getSinglePost = async (id) => {
         return err;
     }
 };
+
 
 export const getPostComments = async (id) => {
     try {
@@ -109,7 +132,7 @@ export const getPostComments = async (id) => {
 };
 export const postComments = async (id, token, data) => {
     try {
-        const result = await axios.post(`${API_URL}/posts/comment/${id}`,data,
+        const result = await axios.post(`${API_URL}/posts/comment/${id}`, data,
             {
                 headers: { Authorization: `bearer ${token}` },
             });
@@ -141,9 +164,9 @@ export const deletePostComments = async (id, token, postId) => {
 };
 export const getWriterInfo = async (id) => {
     try {
-        const {data} = await axios.get(`${API_URL}/users/get-user/${id}`);
+        const { data } = await axios.get(`${API_URL}/users/get-user/${id}`);
 
-           return data?.data;
+        return data?.data;
     } catch (error) {
         const err = error?.response?.data || error?.response;
         console.log(error);
@@ -154,7 +177,7 @@ export const getWriterInfo = async (id) => {
 export const followWriter = async (id, token) => {
     try {
         const res = await axios.post(`${API_URL}/users/follower/${id}`, null, {
-              headers: {
+            headers: {
                 Authorization: `bearer ${token}`,
             },
         });

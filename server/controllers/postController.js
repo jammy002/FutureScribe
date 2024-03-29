@@ -313,7 +313,7 @@ export const getPopularContents = async (req, res, next) => {
           slug: 1,
           img: 1,
           cat: 1,
-          views: { $size: "$views" },
+          views: { $cond: { if: { $isArray: "$views" }, then: { $size: "$views" }, else: 0 } },
           createdAt: 1,
         },
       },
@@ -335,7 +335,7 @@ export const getPopularContents = async (req, res, next) => {
         $project: {
           name: 1,
           image: 1,
-          followers: { $size: "$followers" },
+          followers: { $cond: { if: { $isArray: "$followers" }, then: { $size: "$followers" }, else: 0 } },
         },
       },
       {
@@ -359,7 +359,7 @@ export const getPopularContents = async (req, res, next) => {
 export const getPost = async (req, res, next) => {
   try {
     const { postId } = req.params;
-    const { userId } = req.body; // Assuming userId is provided in the request body
+    const userId = req.query.userId; // Retrieve userId from query parameters
 
     // Check if the user has already viewed the post
     const existingView = await Views.findOne({ user: userId, post: postId });

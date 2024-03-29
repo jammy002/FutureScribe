@@ -17,7 +17,7 @@ export const useAnalytics = (toast, toggle, token) => {
                 },
             }
             );
-
+            console.log(data)
             return data;
         },
         onError:(error) => {
